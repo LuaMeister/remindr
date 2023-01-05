@@ -14,7 +14,7 @@
     "onCommand:remindr.removeReminder",
     "onCommand::remindr.inspectReminder"
   ],
-  "main": "./extension.js",
+  "main": "./src/extension.js",
   "contributes": {
     "commands": [
       {
