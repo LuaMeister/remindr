@@ -3,6 +3,28 @@ const vscode = require('vscode');
 const { RecurringReminder } = require('./classes/RecurringReminder');
 
 /**
+ * @description Converts a string like 1h23m5s to a number in seconds
+ * @param { String } stringToParse The string to create a time value from
+ * @returns { number } The number in seconds
+ */
+function parseTime(stringToParse)
+{
+    if (stringToParse == undefined || stringToParse.length <= 0) { console.log("Nothing was put in"); return 0; }
+
+    var units = {'h': 3600, 'm': 60, 's': 1};
+	var regex = /(\d+)([hms])/g;
+
+	let seconds = 0;
+	var match;
+	while ((match = regex.exec(stringToParse))) 
+	{
+		seconds += parseInt(match[1]) * units[match[2]];
+	}
+
+	return seconds;
+}
+
+/**
  * @description Gets all of the current Reminders. If there is no Reminders object, create one.
  * @param {vscode.ExtensionContext} context The context to access globalState from
  * @returns { Object.<string, RecurringReminder> } A dictionary of RecurringReminders
@@ -27,7 +49,7 @@ function getReminders(context) {
  */
 function getReminderByName(context, name, returnBoolean = false) {
 	let reminders = getReminders(context)
-	let reminder = context[name]
+	let reminder = reminders[name]
 
 	if (reminder)
 	{
@@ -53,6 +75,11 @@ function activate(context) {
 				if (reminder == null || reminder == "") { return; }
 				vscode.window.showInputBox({ title: "Interval", placeHolder: "20m", prompt: "How often do you want to be reminded?" }).then((interval) => {
 					if (interval == null || reminder == "") { return; }
+					console.log(interval);
+					parsedInterval = parseTime(interval);
+					if (parsedInterval == 0) { console.log("Failure: " + parsedInterval); return; }
+
+					console.log("Success: " + parsedInterval);
 
 					// TODO: Parse Interval before actually making the reminder
 					// context.globalState.update(name, JSON.stringify({message: reminder, interval: interval}))
