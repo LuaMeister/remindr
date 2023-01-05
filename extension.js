@@ -27,7 +27,7 @@ function activate(context) {
 	});
 
 	let removeReminder = vscode.commands.registerCommand('remindr.removeReminder', function () {
-		vscode.window.showInformationMessage("Removing Reminder");
+		vscode.window.showInformationMessage("Not Implemented");
 	})
 
 	context.subscriptions.push(addRecurringReminder);
