@@ -40,6 +40,7 @@ function activate(context) {
 	})
 
 	context.subscriptions.push(addRecurringReminder);
+	context.subscriptions.push(getReminder)
 	context.subscriptions.push(removeReminder);
 }
 
