@@ -9,15 +9,18 @@
   "categories": [
     "Other"
   ],
-  "activationEvents": [
-    "onCommand:remindr.helloWorld"
-  ],
   "main": "./extension.js",
   "contributes": {
-    "commands": [{
-      "command": "remindr.helloWorld",
-      "title": "Hello World"
-    }]
+    "commands": [
+      {
+        "command": "remindr.addRecurringReminder",
+        "title": "Add Recurring Reminder"
+      },
+      {
+        "command": "remindr.removeReminder",
+        "title": "Remove Reminder"
+      }
+    ]
   },
   "scripts": {
     "lint": "eslint .",
