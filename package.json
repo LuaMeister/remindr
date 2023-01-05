@@ -11,7 +11,8 @@
   ],
   "activationEvents": [
     "onCommand:remindr.addRecurringReminder",
-    "onCommand:remindr.removeReminder"
+    "onCommand:remindr.removeReminder",
+    "onCommand::remindr.inspectReminder"
   ],
   "main": "./extension.js",
   "contributes": {
@@ -23,6 +24,10 @@
       {
         "command": "remindr.removeReminder",
         "title": "Remove Reminder"
+      },
+      {
+        "command": "remindr.inspectReminder",
+        "title": "Inspect Reminder"
       }
     ]
   },
