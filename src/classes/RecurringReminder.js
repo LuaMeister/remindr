@@ -1,5 +1,5 @@
 
-export class RecurringReminder
+class RecurringReminder
 {
     /**
      * @description Sets the Reminder's name which will be used as the index in the Reminders object
@@ -40,7 +40,9 @@ export class RecurringReminder
     {
         this.type = type;
         return this;
-    }
+    }    
+}
 
-    
+module.exports = {
+    RecurringReminder
 }
