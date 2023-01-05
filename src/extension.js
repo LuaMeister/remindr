@@ -46,6 +46,8 @@ function activate(context) {
 			if (name == null || name == "") { return; }
 
 			// TODO: make sure this name doesn't already exist
+			let alreadyExists = getReminderByName(context, name, true);
+			if (alreadyExists == true) { vscode.showInformationMessage(`A reminder with the name ${name} already exists!`); return; };
 
 			vscode.window.showInputBox({ title: "Reminder", placeHolder: "It's time to stand-up and stretch!", prompt: "What do you want to be reminded of?" }).then((reminder) => {
 				if (reminder == null || reminder == "") { return; }
