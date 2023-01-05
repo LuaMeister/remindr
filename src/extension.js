@@ -5,6 +5,7 @@ const { RecurringReminder } = require('./classes/RecurringReminder');
 /**
  * @description Gets all of the current Reminders. If there is no Reminders object, create one.
  * @param {vscode.ExtensionContext} context The context to access globalState from
+ * @returns { Object.<string, RecurringReminder> } A dictionary of RecurringReminders
  */
 function getReminders(context) {
 	var reminders = context.globalState.get("Reminders");
@@ -26,11 +27,15 @@ function getReminders(context) {
  */
 function getReminderByName(context, name, returnBoolean = false) {
 	let reminders = getReminders(context)
-	console.log(reminders);
-	return reminders;
+	let reminder = context[name]
+
+	if (reminder)
+	{
+		return returnBoolean ? true : reminder;
+	} else {
+		return returnBoolean ? false : undefined
+	}
 }
-
-
 
 /**
  * @param {vscode.ExtensionContext} context
@@ -41,7 +46,6 @@ function activate(context) {
 			if (name == null || name == "") { return; }
 
 			// TODO: make sure this name doesn't already exist
-			let exists = getReminderByName(context, name, true)
 
 			vscode.window.showInputBox({ title: "Reminder", placeHolder: "It's time to stand-up and stretch!", prompt: "What do you want to be reminded of?" }).then((reminder) => {
 				if (reminder == null || reminder == "") { return; }
