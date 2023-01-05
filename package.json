@@ -9,6 +9,10 @@
   "categories": [
     "Other"
   ],
+  "activationEvents": [
+    "onCommand:remindr.addRecurringReminder",
+    "onCommand:remindr.removeReminder"
+  ],
   "main": "./extension.js",
   "contributes": {
     "commands": [
